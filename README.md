@@ -1,26 +1,66 @@
-# Steam inventory info
-Это простая программа для получения списка предметов из инвентаря Steam по SteamID64. По умолчанию используется игра CS2 (app_id=730), но вы можете изменить app_id на другую игру.
+# Steam Inventory Parser
 
-Программа создана без Steam API Key
+A simple Python program to retrieve a Steam user's inventory items using their SteamID64.  
+By default, the program fetches items from **CS2 (app_id = 730)**, but you can change `APP_ID` to target a different game.
 
-# Функции
-Запрос инвентаря: Получает список предметов из инвентаря Steam по SteamID64.
-Отображение предметов: Показывает информацию о каждом предмете (название, тип, возможность продажи на рынке)
-# Использование
-1. Установите необходимые библиотеки (pip install requests)
-2. При запуске введите SteamID64 профиля Steam
-3. Если вы хотите изменить игру, замените значение переменной app_id в коде программы (по умолчанию установлено app_id=730 для CS2)
+> **Note:** This program works **without a Steam API Key**.
 
-# Пример
-```
-Предметы инвентаря:
-Name: AK-47 | Redline
-Type: Rifle
-Marketable: Yes
+## Features
+
+- Fetches inventory items for a given SteamID64.
+- Displays item name, type, and marketable status.
+- No API key required.
+
 ---
-Name: Desert Eagle | Blaze
-Type: Pistol
-Marketable: No
+
+## Example Output
+
+```
+## Inventory Items:
+Name: Music Kit | Daniel Sadowski, The 8-Bit Kit
+Type: High Grade Music Kit
+Marketable: Yes
+---------------
+Name: M4A4 | Dark Blossom
+Type: Industrial Grade Rifle
+Marketable: Yes
+---------------
+````
+
+---
+
+## Dependencies
+
+- Python 3.8+
+- `requests`
+
+Install dependencies:
+
+```bash
+pip install requests
+````
+
+---
+
+## Configuration
+
+* `app_id`: Steam application ID (default: `730` — CS2 / CS:GO)
+* `context_id`: Inventory context ID (default: `2`)
+
+You can change these values in the script if needed.
+
+---
+
+## Usage
+
+```bash
+python main.py
 ```
 
-This project is created by [abik](https://github.com/abi4ka).
+Enter a valid **SteamID64** when prompted.
+
+---
+
+## Author
+
+Created by [abik](https://github.com/abi4ka)
