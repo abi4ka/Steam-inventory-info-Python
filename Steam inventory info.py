@@ -1,8 +1,10 @@
 import requests
-app_id= 730
+
+app_id = 730
+
 def get_inventory_items(steam_id, context_id=2):
     """
-    Получает список предметов из инвентаря Steam по SteamID64.
+    Retrieves a list of items from a Steam inventory using SteamID64.
     """
     url = f'http://steamcommunity.com/inventory/{steam_id}/{app_id}/{context_id}'
     try:
@@ -10,17 +12,19 @@ def get_inventory_items(steam_id, context_id=2):
         if 'descriptions' in response:
             return response['assets'], response['descriptions']
         else:
-            print(f"Ошибка при получении предметов: {response.get('message', 'Неизвестная ошибка')}")
+            print(f"Error retrieving items: {response.get('message', 'Unknown error')}")
             return None
     except requests.RequestException as e:
-        print(f"Ошибка HTTP запроса: {e}")
+        print(f"HTTP request error: {e}")
         return None
 
 def main():
-    steam_id = input("Введите SteamID64 профиля Steam: ")
+    steam_id = input("Enter the Steam profile SteamID64: ")
     assets, descriptions = get_inventory_items(steam_id)
+
     if assets:
-        print("Предметы инвентаря:")
+        print("Inventory Items:")
+        print('---')
         for asset in assets:
             classid = asset['classid']
             for description in descriptions:
@@ -30,7 +34,8 @@ def main():
                     print(f"Marketable: {'Yes' if description['marketable'] else 'No'}")
                     print('---')
     else:
-        print("Не удалось получить предметы инвентаря.")
+        print("Failed to retrieve inventory items.")
+
 
 if __name__ == '__main__':
     main()
